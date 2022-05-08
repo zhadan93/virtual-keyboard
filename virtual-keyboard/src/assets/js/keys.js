@@ -8,10 +8,12 @@ export default [
       ru: 'Ё',
       en: '~',
     },
+    code: 'Backquote',
   },
   {
     main: '1',
     shift: '!',
+    code: 'Digit1',
   },
   {
     main: '2',
@@ -19,6 +21,7 @@ export default [
       ru: '"',
       en: '@',
     },
+    code: 'Digit2',
   },
   {
     main: '3',
@@ -26,6 +29,7 @@ export default [
       ru: '№',
       en: '#',
     },
+    code: 'Digit3',
   },
   {
     main: '4',
@@ -33,10 +37,12 @@ export default [
       ru: ';',
       en: '$',
     },
+    code: 'Digit4',
   },
   {
     main: '5',
     shift: '%',
+    code: 'Digit5',
   },
   {
     main: '6',
@@ -44,6 +50,7 @@ export default [
       ru: ':',
       en: '^',
     },
+    code: 'Digit6',
   },
   {
     main: '7',
@@ -51,35 +58,43 @@ export default [
       ru: '?',
       en: '&',
     },
+    code: 'Digit7',
   },
   {
     main: '8',
     shift: '*',
+    code: 'Digit8',
   },
   {
     main: '9',
     shift: '(',
+    code: 'Digit9',
   },
   {
     main: '0',
     shift: ')',
+    code: 'Digit0',
   },
   {
     main: '-',
     shift: '_',
+    code: 'Minus',
   },
   {
     main: '=',
     shift: '+',
+    code: 'Equal',
   },
   {
     main: 'Backspace',
     shift: null,
+    code: 'Backspace',
     fn: true,
   },
   {
     main: 'Tab',
     shift: null,
+    code: 'Tab',
     fn: true,
   },
   {
@@ -91,6 +106,7 @@ export default [
       ru: 'Й',
       en: 'Q',
     },
+    code: 'KeyQ',
   },
   {
     main: {
@@ -101,6 +117,7 @@ export default [
       ru: 'Ц',
       en: 'W',
     },
+    code: 'KeyW',
   },
   {
     main: {
@@ -111,6 +128,7 @@ export default [
       ru: 'У',
       en: 'E',
     },
+    code: 'KeyE',
   },
   {
     main: {
@@ -121,6 +139,7 @@ export default [
       ru: 'К',
       en: 'R',
     },
+    code: 'KeyR',
   },
   {
     main: {
@@ -131,6 +150,7 @@ export default [
       ru: 'Е',
       en: 'T',
     },
+    code: 'KeyT',
   },
   {
     main: {
@@ -141,6 +161,7 @@ export default [
       ru: 'Н',
       en: 'Y',
     },
+    code: 'KeyY',
   },
   {
     main: {
@@ -151,6 +172,7 @@ export default [
       ru: 'Г',
       en: 'U',
     },
+    code: 'KeyU',
   },
   {
     main: {
@@ -161,6 +183,7 @@ export default [
       ru: 'Ш',
       en: 'I',
     },
+    code: 'KeyI',
   },
   {
     main: {
@@ -171,6 +194,7 @@ export default [
       ru: 'Щ',
       en: 'O',
     },
+    code: 'KeyO',
   },
   {
     main: {
@@ -181,6 +205,7 @@ export default [
       ru: 'З',
       en: 'P',
     },
+    code: 'KeyP',
   },
   {
     main: {
@@ -191,6 +216,7 @@ export default [
       ru: 'Х',
       en: '{',
     },
+    code: 'BracketLeft',
   },
   {
     main: {
@@ -201,6 +227,7 @@ export default [
       ru: 'Ъ',
       en: '}',
     },
+    code: 'BracketRight',
   },
   {
     main: '\\',
@@ -208,15 +235,18 @@ export default [
       ru: '/',
       en: '|',
     },
+    code: 'Backslash',
   },
   {
     main: 'delete',
     shift: null,
+    code: 'Delete',
     fn: true,
   },
   {
     main: 'Caps Lock',
     shift: null,
+    code: 'CapsLock',
     fn: true,
   },
   {
@@ -228,6 +258,7 @@ export default [
       ru: 'Ф',
       en: 'A',
     },
+    code: 'KeyA',
   },
   {
     main: {
@@ -238,6 +269,7 @@ export default [
       ru: 'Ы',
       en: 'S',
     },
+    code: 'KeyS',
   },
   {
     main: {
@@ -248,6 +280,7 @@ export default [
       ru: 'В',
       en: 'D',
     },
+    code: 'KeyD',
   },
   {
     main: {
@@ -258,6 +291,7 @@ export default [
       ru: 'А',
       en: 'F',
     },
+    code: 'KeyF',
   },
   {
     main: {
@@ -268,6 +302,7 @@ export default [
       ru: 'П',
       en: 'G',
     },
+    code: 'KeyG',
   },
   {
     main: {
@@ -278,6 +313,7 @@ export default [
       ru: 'Р',
       en: 'H',
     },
+    code: 'KeyH',
   },
   {
     main: {
@@ -288,6 +324,7 @@ export default [
       ru: 'О',
       en: 'J',
     },
+    code: 'KeyJ',
   },
   {
     main: {
@@ -298,6 +335,7 @@ export default [
       ru: 'Л',
       en: 'K',
     },
+    code: 'KeyK',
   },
   {
     main: {
@@ -308,6 +346,7 @@ export default [
       ru: 'Д',
       en: 'L',
     },
+    code: 'KeyL',
   },
   {
     main: {
@@ -318,6 +357,7 @@ export default [
       ru: 'Ж',
       en: ':',
     },
+    code: 'Semicolon',
   },
   {
     main: {
@@ -328,15 +368,18 @@ export default [
       ru: 'Э',
       en: '"',
     },
+    code: 'Quote',
   },
   {
     main: 'ENTER',
     shift: null,
+    code: 'Enter',
     fn: true,
   },
   {
     main: 'Shift',
     shift: null,
+    code: 'ShiftLeft',
     fn: true,
   },
   {
@@ -348,6 +391,7 @@ export default [
       ru: 'Я',
       en: 'Z',
     },
+    code: 'KeyZ',
   },
   {
     main: {
@@ -358,6 +402,7 @@ export default [
       ru: 'Ч',
       en: 'X',
     },
+    code: 'KeyX',
   },
   {
     main: {
@@ -368,6 +413,7 @@ export default [
       ru: 'С',
       en: 'C',
     },
+    code: 'KeyC',
   },
   {
     main: {
@@ -378,6 +424,7 @@ export default [
       ru: 'М',
       en: 'V',
     },
+    code: 'KeyV',
   },
   {
     main: {
@@ -388,6 +435,7 @@ export default [
       ru: 'И',
       en: 'B',
     },
+    code: 'KeyB',
   },
   {
     main: {
@@ -398,6 +446,7 @@ export default [
       ru: 'Т',
       en: 'N',
     },
+    code: 'KeyN',
   },
   {
     main: {
@@ -408,6 +457,7 @@ export default [
       ru: 'Ь',
       en: 'M',
     },
+    code: 'KeyM',
   },
   {
     main: {
@@ -418,6 +468,7 @@ export default [
       ru: 'Б',
       en: '<',
     },
+    code: 'Comma',
   },
   {
     main: {
@@ -428,6 +479,7 @@ export default [
       ru: 'Ю',
       en: '>',
     },
+    code: 'Period',
   },
   {
     main: {
@@ -438,54 +490,66 @@ export default [
       ru: ',',
       en: '?',
     },
+    code: 'Slash',
   },
   {
     main: 'Shift',
     shift: null,
+    code: 'ShiftRight',
     fn: true,
   },
   {
     main: 'Ctrl',
     shift: null,
+    code: 'ControlLeft',
     fn: true,
   },
   {
     main: 'Alt',
     shift: null,
+    code: 'AltLeft',
     fn: true,
   },
   {
     main: ' ',
     shift: null,
+    code: 'Space',
+    fn: true,
   },
   {
     main: 'Alt',
     shift: null,
+    code: 'AltRight',
     fn: true,
   },
   {
     main: 'Ctrl',
     shift: null,
+    code: 'ControlRight',
     fn: true,
   },
   {
     main: '◂',
     shift: null,
+    code: 'ArrowLeft',
     fn: true,
   },
   {
     main: '▴',
     shift: null,
+    code: 'ArrowUp',
     fn: true,
   },
   {
     main: '▾',
     shift: null,
+    code: 'ArrowDown',
     fn: true,
   },
   {
     main: '▸',
     shift: null,
+    code: 'ArrowRight',
     fn: true,
   },
 ];

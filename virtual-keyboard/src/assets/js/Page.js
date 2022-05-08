@@ -4,7 +4,10 @@ import Keyboard from './Keyboard';
 export default class Page {
   constructor() {
     this.body = document.body;
-    this.elements = [];
+    this.textarea = null;
+    this.elements = null;
+    this.pressKey = null;
+    this.pointerPosition = 0;
   }
 
   renderPage() {
@@ -15,7 +18,7 @@ export default class Page {
     const main = createElement('main', null, 'main');
     const subtitle = createElement('h3', 'The virtual keyboard was created in Windows operation system', 'subtitle');
     const hint = createElement('p', 'Switch between English and Russian languages: Shift + Alt', 'hint');
-    const textarea = createElement('textarea', null, 'keyboard__output', [
+    this.textarea = createElement('textarea', null, 'keyboard__output', [
       ['autocomplete', 'off'],
       ['autocorrect', 'off'],
       ['cols', 140],
@@ -23,12 +26,33 @@ export default class Page {
       ['rows', 10],
       ['spellcheck', 'false'],
     ]);
-    this.elements.push(textarea);
 
     const keyBoard = new Keyboard();
-    const keys = keyBoard.renderKeyboard();
+    const { keyboardContainer, elements } = keyBoard.renderKeyboard();
+    this.elements = elements;
 
-    addElement([subtitle, hint, textarea, keys], main);
+    addElement([subtitle, hint, this.textarea, keyboardContainer], main);
     addElement([head, main], this.body);
+
+    document.addEventListener('keydown', this.handleKeydownEvent);
+    document.addEventListener('keyup', this.handleKeyUpEvent);
   }
+
+  handleKeydownEvent = (event) => {
+    const { code } = event;
+
+    this.pressKey = this.elements[code];
+
+    if (this.pressKey) {
+      event.preventDefault();
+      this.textarea.focus();
+      this.pressKey.classList.add('active');
+    }
+  };
+
+  handleKeyUpEvent = () => {
+    if (this.pressKey) {
+      this.pressKey.classList.remove('active');
+    }
+  };
 }

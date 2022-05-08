@@ -3,6 +3,7 @@ import { createElement } from './Common';
 export default class Key {
   constructor(language) {
     this.language = language;
+    this.key = null;
   }
 
   createKey({ main, fn }) {
@@ -11,8 +12,8 @@ export default class Key {
 
     const context = main[this.language] || main;
 
-    const element = createElement('div', context, classNames);
+    this.key = createElement('div', context, classNames);
 
-    return element;
+    return this.key;
   }
 }

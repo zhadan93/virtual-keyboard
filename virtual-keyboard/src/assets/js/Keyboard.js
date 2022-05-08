@@ -5,18 +5,23 @@ import keys from './keys';
 export default class Keyboard {
   constructor() {
     this.language = 'en';
-    this.elements = [];
+    this.elements = {};
   }
 
   renderKeyboard() {
     const keyData = new Key(this.language);
 
-    keys.forEach((key) => this.elements.push(keyData.createKey(key)));
+    keys.forEach((key) => {
+      this.elements[key.code] = keyData.createKey(key);
+    });
 
-    const keyboard = createElement('div', null, 'keyboard');
+    const keyboardContainer = createElement('div', null, 'keyboard');
 
-    addElement(this.elements, keyboard);
+    addElement(Object.values(this.elements), keyboardContainer);
 
-    return keyboard;
+    return {
+      keyboardContainer,
+      elements: this.elements,
+    };
   }
 }
