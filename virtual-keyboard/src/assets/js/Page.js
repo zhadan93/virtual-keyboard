@@ -25,7 +25,7 @@ export default class Page {
       ['autocomplete', 'off'],
       ['autocorrect', 'off'],
       ['cols', 140],
-      ['placeholder', 'Start typing'],
+      ['placeholder', 'Start typing…'],
       ['rows', 10],
       ['spellcheck', 'false'],
     ]);

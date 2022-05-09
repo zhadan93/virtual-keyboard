@@ -493,6 +493,12 @@ export default [
     code: 'Slash',
   },
   {
+    main: '▴',
+    shift: null,
+    code: 'ArrowUp',
+    fn: true,
+  },
+  {
     main: 'Shift',
     shift: null,
     code: 'ShiftRight',
@@ -523,21 +529,9 @@ export default [
     fn: true,
   },
   {
-    main: 'Ctrl',
-    shift: null,
-    code: 'ControlRight',
-    fn: true,
-  },
-  {
     main: '◂',
     shift: null,
     code: 'ArrowLeft',
-    fn: true,
-  },
-  {
-    main: '▴',
-    shift: null,
-    code: 'ArrowUp',
     fn: true,
   },
   {
@@ -550,6 +544,12 @@ export default [
     main: '▸',
     shift: null,
     code: 'ArrowRight',
+    fn: true,
+  },
+  {
+    main: 'Ctrl',
+    shift: null,
+    code: 'ControlRight',
     fn: true,
   },
 ];
