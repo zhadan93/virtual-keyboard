@@ -1,8 +1,10 @@
 import { createElement, addElement } from './Common';
 import Keyboard from './Keyboard';
+import keys from './keys';
 
 export default class Page {
   constructor() {
+    this.language = 'en';
     this.body = document.body;
     this.textarea = null;
     this.elements = null;
@@ -57,6 +59,13 @@ export default class Page {
         return;
       }
 
+      if (/Alt[a-z]*/i.test(code) && (this.pressedKey.ShiftLeft || this.pressedKey.ShiftRight)) {
+        this.language = this.language === 'en' ? 'ru' : 'en';
+        this.changeLanguage();
+        isPresent.classList.add('active');
+        return;
+      }
+
       isPresent.classList.add('active');
       this.outputResultToTextarea(code, key);
     }
@@ -68,6 +77,8 @@ export default class Page {
     if (code !== 'CapsLock') {
       this.pressedKey[code].classList.remove('active');
     }
+
+    delete this.pressedKey[code];
   };
 
   changeLetterCase = () => {
@@ -82,6 +93,14 @@ export default class Page {
         val.innerHTML = val.innerHTML.toUpperCase();
       } else {
         val.innerHTML = val.innerHTML.toLowerCase();
+      }
+    });
+  };
+
+  changeLanguage = () => {
+    keys.forEach(({ main, code }) => {
+      if (main[this.language]) {
+        this.elements[code].innerHTML = main[this.language];
       }
     });
   };
