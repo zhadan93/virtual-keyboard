@@ -1,8 +1,8 @@
-import { createElement } from './Common';
+import { createElement } from './common';
 
 export default class Key {
-  constructor(language) {
-    this.language = language;
+  constructor(lang) {
+    this.language = lang;
     this.key = null;
   }
 

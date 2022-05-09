@@ -1,10 +1,11 @@
-import { createElement, addElement } from './Common';
+import { createElement, addElement } from './common';
+import { setLocalStorage } from './localStorage';
 import Keyboard from './Keyboard';
 import keys from './keys';
 
 export default class Page {
-  constructor() {
-    this.language = 'en';
+  constructor(lang) {
+    this.language = lang;
     this.body = document.body;
     this.textarea = null;
     this.elements = null;
@@ -29,12 +30,16 @@ export default class Page {
       ['spellcheck', 'false'],
     ]);
 
-    const keyBoard = new Keyboard();
+    const keyBoard = new Keyboard(this.language);
     const { keyboardContainer, elements } = keyBoard.renderKeyboard();
     this.elements = elements;
 
     addElement([subtitle, hint, this.textarea, keyboardContainer], main);
     addElement([head, main], this.body);
+
+    window.addEventListener('beforeunload', () => {
+      setLocalStorage('keyboardLanguage', this.language);
+    });
 
     document.addEventListener('keydown', this.handleKeydownEvent);
     document.addEventListener('keyup', this.handleKeyUpEvent);

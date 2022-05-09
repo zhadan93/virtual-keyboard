@@ -1,10 +1,10 @@
-import { createElement, addElement } from './Common';
+import { createElement, addElement } from './common';
 import Key from './Key';
 import keys from './keys';
 
 export default class Keyboard {
-  constructor() {
-    this.language = 'en';
+  constructor(lang) {
+    this.language = lang;
     this.elements = {};
   }
 
