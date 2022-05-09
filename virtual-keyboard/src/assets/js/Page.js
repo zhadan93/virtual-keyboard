@@ -20,7 +20,7 @@ export default class Page {
 
     const main = createElement('main', null, 'main');
     const subtitle = createElement('h3', 'The virtual keyboard was created in Windows operation system', 'subtitle');
-    const hint = createElement('p', 'Switch between English and Russian languages: Shift + Alt', 'hint');
+    const hint = createElement('p', 'Switch between English and Russian languages: Ctrl + Alt', 'hint');
     this.textarea = createElement('textarea', null, 'keyboard__output', [
       ['autocomplete', 'off'],
       ['autocorrect', 'off'],
@@ -64,7 +64,7 @@ export default class Page {
         return;
       }
 
-      if (/Alt[a-z]*/i.test(code) && (this.pressedKey.ShiftLeft || this.pressedKey.ShiftRight)) {
+      if ((/Alt[a-z]*/i.test(code) && (this.pressedKey.ControlLeft || this.pressedKey.ControlRight)) || (/Control[a-z]*/i.test(code) && (this.pressedKey.AltLeft || this.pressedKey.AltRight))) {
         this.language = this.language === 'en' ? 'ru' : 'en';
         this.changeLanguage();
         isPresent.classList.add('active');
