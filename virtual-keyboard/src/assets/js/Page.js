@@ -95,7 +95,9 @@ export default class Page {
 
   changeLetterCase = () => {
     const elements = Object.entries(this.elements);
-    let letters = elements.filter(([key]) => /Key/.test(key));
+    const regExp = this.language === 'en' ? /Key/ : /Key|Backquote|Bracket|Semicolon|Quote|Comma|Period/;
+
+    let letters = elements.filter(([key]) => regExp.test(key));
     letters = letters.map((letter) => letter[1]);
 
     letters.forEach((letter) => {
