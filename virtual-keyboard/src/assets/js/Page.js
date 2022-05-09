@@ -25,7 +25,7 @@ export default class Page {
       ['autocomplete', 'off'],
       ['autocorrect', 'off'],
       ['cols', 140],
-      ['placeholder', 'You '],
+      ['placeholder', 'Start typing'],
       ['rows', 10],
       ['spellcheck', 'false'],
     ]);
@@ -141,7 +141,7 @@ export default class Page {
     const pointerPosition = selectionStart;
     const textToLeftOfPointer = value.slice(0, pointerPosition);
     const textToRightOfPointer = value.slice(pointerPosition);
-    const reg = eventCode.match(/(Key[A-Za-z])|(Digit[0-9])|[a-z]*quote|Minus|Equal|Bracket[a-z]*|[a-z]*slash|Semicolon|Comma|Period|Space/i);
+    const reg = eventCode.match(/(Key[A-Za-z])|(Digit[0-9])|[a-z]*quote|Minus|Equal|Bracket[a-z]*|[a-z]*slash|Semicolon|Comma|Period|Space|ArrowUp|ArrowDown/i);
 
     switch (eventCode) {
       case 'Backspace':
@@ -181,18 +181,12 @@ export default class Page {
         position -= position > 0 ? 1 : 0;
         break;
 
-      case 'ArrowUp':
-        console.log();
-        break;
-
-      case 'ArrowDown':
-        console.log();
-        break;
-
       case 'Delete':
         position += 0;
         break;
 
+      case 'ArrowUp':
+      case 'ArrowDown':
       case 'Tab':
       case 'Enter':
       case 'ArrowRight':

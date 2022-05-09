@@ -4,7 +4,7 @@ export function createElement(tag, content, classNames, attributes) {
   try {
     element = document.createElement(tag);
   } catch (err) {
-    throw new Error('Error');
+    throw new Error('Unable to create HTMLElement! Invalid tag name.');
   }
 
   if (content) {
@@ -27,11 +27,11 @@ export function createElement(tag, content, classNames, attributes) {
 export function addElement(elements, container) {
   try {
     if (!elements || typeof (elements) !== 'object') {
-      throw new Error('error1');
+      throw new Error('You\'re trying to insert invalid element datatype.');
     }
 
     if (!container || typeof (container) !== 'object') {
-      throw new Error('error2');
+      throw new Error('You\'re trying to insert invalid container datatype.');
     }
 
     if (Array.isArray(elements)) {
