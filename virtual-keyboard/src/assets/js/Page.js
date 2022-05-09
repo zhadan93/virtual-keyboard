@@ -6,7 +6,8 @@ export default class Page {
     this.body = document.body;
     this.textarea = null;
     this.elements = null;
-    this.pressKey = null;
+    this.pressedKey = {};
+    this.capsLock = false;
   }
 
   renderPage() {
@@ -38,23 +39,51 @@ export default class Page {
   }
 
   handleKeydownEvent = (event) => {
-    const { code, key } = event;
+    const { code } = event;
 
-    this.pressKey = this.elements[code];
+    const isPresent = this.elements[code];
 
-    if (this.pressKey) {
+    if (isPresent) {
+      this.pressedKey[code] = isPresent;
+      const key = isPresent.innerHTML;
+
       event.preventDefault();
       this.textarea.focus();
-      this.pressKey.classList.add('active');
 
+      if (code === 'CapsLock') {
+        this.capsLock = !this.capsLock;
+        isPresent.classList.toggle('active');
+        this.changeLetterCase();
+        return;
+      }
+
+      isPresent.classList.add('active');
       this.outputResultToTextarea(code, key);
     }
   };
 
-  handleKeyUpEvent = () => {
-    if (this.pressKey) {
-      this.pressKey.classList.remove('active');
+  handleKeyUpEvent = (event) => {
+    const { code } = event;
+
+    if (code !== 'CapsLock') {
+      this.pressedKey[code].classList.remove('active');
     }
+  };
+
+  changeLetterCase = () => {
+    const elements = Object.entries(this.elements);
+    let letters = elements.filter(([key]) => /Key[A-Z]/.test(key));
+    letters = letters.map((letter) => letter[1]);
+
+    letters.forEach((letter) => {
+      const val = letter;
+
+      if (this.capsLock) {
+        val.innerHTML = val.innerHTML.toUpperCase();
+      } else {
+        val.innerHTML = val.innerHTML.toLowerCase();
+      }
+    });
   };
 
   outputResultToTextarea = (eventCode, eventKey) => {
