@@ -47,14 +47,14 @@ export default class Page {
 
   handleKeydownEvent = (event) => {
     const { code } = event;
-
     const isPresent = this.elements[code];
+
+    event.preventDefault();
 
     if (isPresent) {
       this.pressedKey[code] = isPresent;
       const key = isPresent.innerHTML;
 
-      event.preventDefault();
       this.textarea.focus();
 
       if (code === 'CapsLock') {
@@ -64,23 +64,30 @@ export default class Page {
         return;
       }
 
-      if ((/Alt[a-z]*/i.test(code) && (this.pressedKey.ControlLeft || this.pressedKey.ControlRight)) || (/Control[a-z]*/i.test(code) && (this.pressedKey.AltLeft || this.pressedKey.AltRight))) {
+      if ((/Alt/.test(code) && (this.pressedKey.ControlLeft || this.pressedKey.ControlRight)) || (/Control/i.test(code) && (this.pressedKey.AltLeft || this.pressedKey.AltRight))) {
         this.language = this.language === 'en' ? 'ru' : 'en';
         this.changeLanguage();
-        isPresent.classList.add('active');
-        return;
+      } else if (/Shift/.test(code)) {
+        this.addShiftText();
+      } else {
+        this.outputResultToTextarea(code, key);
       }
 
       isPresent.classList.add('active');
-      this.outputResultToTextarea(code, key);
     }
   };
 
   handleKeyUpEvent = (event) => {
     const { code } = event;
 
-    if (code !== 'CapsLock') {
-      this.pressedKey[code].classList.remove('active');
+    const pressedKey = this.pressedKey[code];
+
+    if (code !== 'CapsLock' && pressedKey) {
+      pressedKey.classList.remove('active');
+    }
+
+    if (/Shift/.test(code)) {
+      this.removeShiftText();
     }
 
     delete this.pressedKey[code];
@@ -88,7 +95,7 @@ export default class Page {
 
   changeLetterCase = () => {
     const elements = Object.entries(this.elements);
-    let letters = elements.filter(([key]) => /Key[A-Z]/.test(key));
+    let letters = elements.filter(([key]) => /Key/.test(key));
     letters = letters.map((letter) => letter[1]);
 
     letters.forEach((letter) => {
@@ -106,6 +113,22 @@ export default class Page {
     keys.forEach(({ main, code }) => {
       if (main[this.language]) {
         this.elements[code].innerHTML = main[this.language];
+      }
+    });
+  };
+
+  addShiftText = () => {
+    keys.forEach(({ shift, code }) => {
+      if (shift) {
+        this.elements[code].innerHTML = shift[this.language] || shift;
+      }
+    });
+  };
+
+  removeShiftText = () => {
+    keys.forEach(({ main, shift, code }) => {
+      if (shift) {
+        this.elements[code].innerHTML = main[this.language] || main;
       }
     });
   };
