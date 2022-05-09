@@ -60,7 +60,7 @@ export default class Page {
       if (code === 'CapsLock') {
         this.capsLock = !this.capsLock;
         isPresent.classList.toggle('active');
-        this.changeLetterCase();
+        this.changeLetterCase(this.capsLock);
         return;
       }
 
@@ -93,7 +93,7 @@ export default class Page {
     delete this.pressedKey[code];
   };
 
-  changeLetterCase = () => {
+  changeLetterCase = (isUpperCase) => {
     const elements = Object.entries(this.elements);
     const regExp = this.language === 'en' ? /Key/ : /Key|Backquote|Bracket|Semicolon|Quote|Comma|Period/;
 
@@ -103,7 +103,7 @@ export default class Page {
     letters.forEach((letter) => {
       const val = letter;
 
-      if (this.capsLock) {
+      if (isUpperCase) {
         val.innerHTML = val.innerHTML.toUpperCase();
       } else {
         val.innerHTML = val.innerHTML.toLowerCase();
@@ -125,6 +125,10 @@ export default class Page {
         this.elements[code].innerHTML = shift[this.language] || shift;
       }
     });
+
+    if (this.capsLock) {
+      this.changeLetterCase(false);
+    }
   };
 
   removeShiftText = () => {
@@ -133,6 +137,10 @@ export default class Page {
         this.elements[code].innerHTML = main[this.language] || main;
       }
     });
+
+    if (this.capsLock) {
+      this.changeLetterCase(true);
+    }
   };
 
   outputResultToTextarea = (eventCode, eventKey) => {
