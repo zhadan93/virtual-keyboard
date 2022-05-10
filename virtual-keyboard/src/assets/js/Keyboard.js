@@ -1,4 +1,4 @@
-import { createElement, addElement } from './common';
+import { createElement, addElement } from './commonNode';
 import Key from './Key';
 import keys from './keys';
 

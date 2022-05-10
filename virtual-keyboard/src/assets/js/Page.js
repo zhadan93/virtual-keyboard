@@ -1,4 +1,4 @@
-import { createElement, addElement } from './common';
+import { createElement, addElement } from './commonNode';
 import { setLocalStorage } from './localStorage';
 import Keyboard from './Keyboard';
 import keys from './keys';

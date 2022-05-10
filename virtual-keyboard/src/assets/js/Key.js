@@ -1,4 +1,4 @@
-import { createElement } from './common';
+import { createElement } from './commonNode';
 
 export default class Key {
   constructor(lang) {
