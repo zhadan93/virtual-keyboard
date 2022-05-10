@@ -24,9 +24,9 @@ export default class Key {
       classNames += ` ${letters.join('')}`;
     }
 
-    const context = main[this.language] || main;
+    const keyContext = main[this.language] || main;
 
-    this.key = createElement('div', context, classNames);
+    this.key = createElement('div', keyContext, classNames);
 
     return this.key;
   }

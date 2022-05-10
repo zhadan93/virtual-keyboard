@@ -11,6 +11,7 @@ export default class Page {
     this.elements = null;
     this.pressedKey = {};
     this.capsLock = false;
+    this.shift = false;
   }
 
   renderPage() {
@@ -30,7 +31,7 @@ export default class Page {
       ['spellcheck', 'false'],
     ]);
 
-    const keyBoard = new Keyboard(this.language);
+    const keyBoard = new Keyboard(this.language, this.textarea);
     const { keyboardContainer, elements } = keyBoard.renderKeyboard();
     this.elements = elements;
 
@@ -41,26 +42,76 @@ export default class Page {
       setLocalStorage('keyboardLanguage', this.language);
     });
 
-    document.addEventListener('keydown', this.handleKeydownEvent);
-    document.addEventListener('keyup', this.handleKeyUpEvent);
+    document.addEventListener('keydown', this.handleDownEvent);
+    document.addEventListener('keyup', this.handleUpEvent);
+    // document.addEventListener('mousedown', this.handleMouseEvent);
+    // document.addEventListener('mouseup', this.handleMouseEvent);
   }
 
-  handleKeydownEvent = (event) => {
-    const { code } = event;
+  /* handleMouseEvent = (event) => {
+    const { target, type } = event;
+
+    if (target.closest('.key')) {
+      const keyCode = this.findActiveKey(target);
+      const mouseEvent = {
+        code: keyCode,
+        type,
+        mouseEvent: event,
+      };
+
+      if (type === 'mousedown') {
+        target.addEventListener('mouseout', this.resetKeyState);
+        this.handleDownEvent(mouseEvent);
+      } else if (type === 'mouseup') {
+        this.handleUpEvent(mouseEvent);
+      }
+    }
+  };
+
+  resetKeyState = (event) => {
+    const { target, type } = event;
+    const keyCode = this.findActiveKey(target);
+
+    if (!/Shift/.test(keyCode)) {
+       const mouseEvent = {
+        code: keyCode,
+        type,
+      };
+    } else if (/Shift/.test(keyCode) && this.capsLock) {
+      this.capsLock = !this.capsLock;
+      this.changeLetterCase(false);
+    }
+
+    target.removeEventListener('mouseout', this.resetKeyState);
+  }; */
+
+  handleDownEvent = (event) => {
+    const { code, type, mouseEvent } = event;
     const isPresent = this.elements[code];
 
-    event.preventDefault();
+    if (isPresent && !event.repeat) {
+      if (/key/.test(type)) {
+        event.preventDefault();
+      } else if (/mouse/.test(type)) {
+        mouseEvent.preventDefault();
+      }
 
-    if (isPresent) {
+      this.textarea.focus();
       this.pressedKey[code] = isPresent;
       const key = isPresent.textContent;
 
-      this.textarea.focus();
-
       if (code === 'CapsLock') {
-        this.capsLock = !this.capsLock;
         isPresent.classList.toggle('active');
-        this.changeLetterCase(this.capsLock);
+        let stateLetterCase = null;
+
+        if (this.shift) {
+          stateLetterCase = this.capsLock || false;
+        } else {
+          stateLetterCase = !this.capsLock;
+        }
+
+        this.capsLock = !this.capsLock;
+        this.changeLetterCase(stateLetterCase);
         return;
       }
 
@@ -68,6 +119,7 @@ export default class Page {
         this.language = this.language === 'en' ? 'ru' : 'en';
         this.changeLanguage();
       } else if (/Shift/.test(code)) {
+        this.shift = !this.shift;
         this.addShiftText();
       } else {
         this.outputResultToTextarea(code, key);
@@ -77,7 +129,7 @@ export default class Page {
     }
   };
 
-  handleKeyUpEvent = (event) => {
+  handleUpEvent = (event) => {
     const { code } = event;
 
     const pressedKey = this.pressedKey[code];
@@ -87,6 +139,7 @@ export default class Page {
     }
 
     if (/Shift/.test(code)) {
+      this.shift = !this.shift;
       this.removeShiftText();
     }
 
@@ -209,5 +262,12 @@ export default class Page {
     }
 
     this.textarea.setSelectionRange(position, position);
+  };
+
+  findActiveKey = (activeKey) => {
+    const elements = Object.entries(this.elements);
+    const [keyCode] = elements.find(([, value]) => value === activeKey);
+
+    return keyCode;
   };
 }

@@ -3,16 +3,17 @@ import Key from './Key';
 import keys from './keys';
 
 export default class Keyboard {
-  constructor(lang) {
+  constructor(lang, textarea) {
     this.language = lang;
     this.elements = {};
+    this.textarea = textarea;
   }
 
   renderKeyboard() {
-    const keyData = new Key(this.language);
-
     keys.forEach((key) => {
-      this.elements[key.code] = keyData.createKey(key);
+      const keyInit = new Key(this.language);
+
+      this.elements[key.code] = keyInit.createKey(key);
     });
 
     const keyboardContainer = createElement('div', null, 'keyboard');
