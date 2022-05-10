@@ -53,7 +53,7 @@ export default class Page {
 
     if (isPresent) {
       this.pressedKey[code] = isPresent;
-      const key = isPresent.innerHTML;
+      const key = isPresent.textContent;
 
       this.textarea.focus();
 
@@ -117,6 +117,10 @@ export default class Page {
         this.elements[code].innerHTML = main[this.language];
       }
     });
+
+    if (this.capsLock) {
+      this.changeLetterCase(true);
+    }
   };
 
   addShiftText = () => {
