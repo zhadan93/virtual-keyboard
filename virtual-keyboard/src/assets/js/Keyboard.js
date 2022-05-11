@@ -3,10 +3,9 @@ import Key from './Key';
 import keys from './keys';
 
 export default class Keyboard {
-  constructor(lang, textarea) {
+  constructor(lang) {
     this.language = lang;
     this.elements = {};
-    this.textarea = textarea;
   }
 
   renderKeyboard() {
