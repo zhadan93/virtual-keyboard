@@ -1,0 +1,122 @@
+:root {
+  --black-color: #000000;
+  --white-color: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+.page {
+  min-width: 1040px;
+  height: 100vh;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  text-align: center;
+
+  background: linear-gradient(to top left, #c1c0fd, #53d4ca);
+}
+
+.head {
+  display: block;
+  padding: 30px 0;
+}
+
+.hint {
+  margin-bottom: 20px;
+}
+
+.keyboard__output {
+  width: 1000px;
+  padding: 10px 20px;
+
+  font-size: 16px;
+
+  border: 3px solid var(--black-color);
+  border-radius: 10px;
+
+  outline: none;
+  resize: none;
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+
+  border: 3px solid var(--black-color);
+  border-radius: 10px;
+}
+
+.key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+
+  border: 3px solid var(--black-color);
+  border-radius: 5px;
+
+  transition: all 0.1s;
+}
+
+.key:hover {
+  background-color: rgba(193, 192, 253, 0.6);
+
+  cursor: pointer;
+}
+
+.key.active {
+  background-color: rgb(193, 192, 253, 0.9);
+  box-shadow: inset 0 0 3px 1px var(--black-color);
+}
+
+.fn-key {
+  flex: 1;
+} 
+
+.tab {
+  flex: 70px;
+}
+
+.caps-lock,
+.enter {
+  flex: 120px;
+}
+
+.shift-left {
+  flex: 65px;
+}
+
+.shift-right {
+  flex: 160px;
+}
+
+.space {
+  flex: 300px;
+}
+
+.arrow-left,
+.arrow-right,
+.arrow-up,
+.arrow-down {
+  flex: 40px;
+
+  font-size: 30px;
+}
+
+.control-left,
+.control-right,
+.alt-left,
+.alt-right {
+  flex: 95px;
+}
